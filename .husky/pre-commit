@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Get staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=d -- '*.ts' '*.tsx' '*.js' '*.jsx' '*.json' '*.css' 'vite.config.ts')
+
+if [ -n "$STAGED_FILES" ]; then
+  echo "Formatting staged files with biome..."
+  echo "$STAGED_FILES" | xargs pnpm exec biome check --write --files-ignore-unknown=true --no-errors-on-unmatched
+  echo "$STAGED_FILES" | xargs git add --
+fi
+
+# Sync codegraph if present
+if [ -d ".codegraph" ]; then
+  echo "Syncing codegraph..."
+  pnpm exec codegraph sync 2>/dev/null || echo "codegraph sync skipped"
+fi
+
+exit 0

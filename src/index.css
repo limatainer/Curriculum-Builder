@@ -1,0 +1,309 @@
+@import 'tailwindcss' source(none);
+@import '@fontsource/lato/300.css';
+@import '@fontsource/lato/400.css';
+@import '@fontsource/lato/700.css';
+@import '@fontsource/raleway/900.css';
+@import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/jetbrains-mono';
+
+@source './**/*.{js,ts,jsx,tsx}';
+
+:root {
+  --paper-100: oklch(0.9553 0.007 88.64);
+  --paper-200: oklch(0.919 0.0112 89.73);
+  --ink-600: oklch(0.4395 0.0104 84.59);
+  --ink-950: oklch(0.1496 0 0);
+  --signal-600: oklch(0.6271 0.1699 149.21);
+  --signal-800: oklch(0.4795 0.1217 151.49);
+
+  --doc-white: oklch(1 0 0);
+  --doc-50: oklch(0.9756 0.0026 106.45);
+  --doc-200: oklch(0.9401 0 0);
+  --doc-300: oklch(0.8945 0 0);
+  --doc-500: oklch(0.5795 0 0);
+  --doc-700: oklch(0.4091 0 0);
+  --doc-900: oklch(0.2178 0 0);
+  --doc-950: oklch(0.1776 0 0);
+
+  --face-sans: 'Lato', system-ui, sans-serif;
+  --face-heading: 'Raleway', system-ui, sans-serif;
+  --face-display: 'Playfair Display Variable', Georgia, serif;
+  --face-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+}
+
+:root {
+  --background: var(--paper-100);
+  --foreground: var(--ink-950);
+  --border: color-mix(in oklab, var(--ink-950) 10%, transparent);
+  --ring: var(--signal-600);
+  --hero-min-height: 88vh;
+  --progress-height: 2px;
+  --offscreen-x: -9999px;
+  --signin-panel-min-height: 660px;
+
+  --mask-bleed: 0.14em;
+  --mask-gap: 0.25em;
+  --underline-offset: 0.16em;
+  --underline-height: 0.07em;
+
+  --shot-scale-wide: 0.34;
+  --shot-scale-wide-sm: 0.5;
+  --shot-scale-wide-lg: 0.62;
+  --shot-scale-base: 0.6;
+  --shot-scale-base-sm: 0.85;
+
+  --duration-ticker: 26s;
+  --duotone-contrast: 1.15;
+  --duotone-noise-opacity: 0.18;
+
+  --ring-offset-selected: -3px;
+  --duration-chevron: 0.2s;
+  --duration-disclosure: 0.22s;
+
+  --paper: var(--paper-100);
+  --paper-deep: var(--paper-200);
+  --ink: var(--ink-950);
+  --ink-muted: var(--ink-600);
+  --signal: var(--signal-600);
+  --signal-deep: var(--signal-800);
+  --rule: color-mix(in oklab, var(--ink-950) 10%, transparent);
+
+  --doc-paper: var(--doc-white);
+  --doc-surface: var(--doc-50);
+  --doc-rule: var(--doc-200);
+  --doc-rule-soft: var(--doc-300);
+  --doc-ink: var(--doc-900);
+  --doc-ink-body: var(--doc-700);
+  --doc-ink-muted: var(--doc-500);
+  --doc-on-dark: var(--doc-white);
+  --doc-on-light: var(--doc-950);
+
+  --doc-space-20: 0.2em;
+  --doc-space-25: 0.25em;
+  --doc-space-30: 0.3em;
+  --doc-space-35: 0.35em;
+  --doc-space-40: 0.4em;
+  --doc-space-50: 0.5em;
+  --doc-space-55: 0.55em;
+  --doc-space-60: 0.6em;
+  --doc-space-70: 0.7em;
+  --doc-space-85: 0.85em;
+  --doc-space-90: 0.9em;
+  --doc-space-100: 1em;
+  --doc-space-120: 1.2em;
+  --doc-space-160: 1.6em;
+  --doc-space-180: 1.8em;
+  --doc-space-200: 2em;
+  --doc-space-220: 2.2em;
+  --doc-space-260: 2.6em;
+
+  --doc-size-bar: 0.4em;
+  --doc-size-dot: 0.4em;
+  --doc-size-node: 0.6em;
+  --doc-size-icon: 1.05em;
+  --doc-size-icon-lg: 3em;
+  --doc-size-photo: 7.5em;
+
+  --doc-border-node: 0.15em;
+  --doc-border-photo: 0.22em;
+
+  --doc-sidebar-width: min(34ch, 34%);
+  --doc-ref-column-min: 18ch;
+  --doc-hairline: 1px;
+  --doc-guide: color-mix(in oklab, var(--ink) 13%, transparent);
+  --doc-page-width: 794px;
+  --doc-page-height: 1123px;
+
+  --doc-text-micro: 0.78em;
+  --doc-text-section: 0.8em;
+  --doc-text-small: 0.9em;
+  --doc-text-lead: 1.15em;
+  --doc-text-title: 1.45em;
+  --doc-text-name: 2.8em;
+
+  --doc-leading-name: 1.05;
+  --doc-leading-title: 1.3;
+  --doc-leading-body: 1.55;
+  --doc-leading-relaxed: 1.7;
+
+  --doc-tracking-name: 0.06em;
+  --doc-tracking-wide: 0.2em;
+
+  --doc-emphasis-muted: 0.7;
+  --doc-emphasis-strong: 0.92;
+
+  --font-size: 100%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-rule: var(--rule);
+
+  --color-doc-paper: var(--doc-paper);
+  --color-doc-surface: var(--doc-surface);
+  --color-doc-rule: var(--doc-rule);
+  --color-doc-rule-soft: var(--doc-rule-soft);
+  --color-doc-ink: var(--doc-ink);
+  --color-doc-ink-body: var(--doc-ink-body);
+  --color-doc-ink-muted: var(--doc-ink-muted);
+
+  --font-sans: var(--face-sans);
+  --font-body: var(--face-sans);
+  --font-heading: var(--face-heading);
+  --font-display: var(--face-display);
+  --font-mono: var(--face-mono);
+
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1.625;
+  --text-meta: 0.6875rem;
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--letter-spacing: 0.2em;
+  --text-eyebrow-tight: 0.6875rem;
+  --text-eyebrow-tight--letter-spacing: 0.1em;
+  --text-eyebrow-wide: 0.6875rem;
+  --text-eyebrow-wide--letter-spacing: 0.3em;
+  --text-display-xs: 1.5rem;
+  --text-display-xs--line-height: 0.95;
+  --text-display-xs--letter-spacing: -0.02em;
+  --text-numeral: clamp(3rem, 7vw, 6rem);
+  --text-numeral--line-height: 1;
+  --text-display-sm: clamp(1.9rem, 3vw, 2.75rem);
+  --text-display-sm--line-height: 0.95;
+  --text-display-sm--letter-spacing: -0.03em;
+  --text-display-md: clamp(2rem, 3.2vw, 3.25rem);
+  --text-display-md--line-height: 0.9;
+  --text-display-md--letter-spacing: -0.03em;
+  --text-display-lg: clamp(1.9rem, 4.5vw, 3.5rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-xl: clamp(2.5rem, 11vw, 12rem);
+  --text-display-xl--line-height: 0.85;
+  --text-display-xl--letter-spacing: -0.04em;
+
+  --container-shell: 1440px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-size: var(--font-size);
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+
+  label,
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--weight-normal);
+    line-height: 1.5;
+  }
+}
+
+#resume-zoom {
+  transform: scale(var(--zoom, 1));
+  transform-origin: top center;
+  margin-bottom: calc(var(--doc-page-height) * var(--zoom, 1) - var(--doc-page-height));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-chevron: 0.01ms;
+    --duration-disclosure: 0.01ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    transition-duration: 0.01ms;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body *:not(:has(#resume-page)):not(#resume-page):not(#resume-page *) {
+    display: none;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--doc-paper);
+  }
+
+  body *:has(#resume-page) {
+    display: block;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+  }
+
+  #resume-page {
+    width: 210mm;
+    min-height: 297mm;
+    box-shadow: none;
+  }
+
+  #resume-page,
+  #resume-page * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

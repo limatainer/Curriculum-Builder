@@ -1,0 +1,25 @@
+details.section > summary {
+	list-style: none;
+	cursor: pointer;
+}
+details.section > summary::-webkit-details-marker {
+	display: none;
+}
+details.section > summary .chev {
+	display: inline-flex;
+	transition: transform var(--duration-chevron) ease;
+}
+details.section[open] > summary .chev {
+	transform: rotate(180deg);
+}
+details.section > .content {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows var(--duration-disclosure) ease;
+}
+details.section[open] > .content {
+	grid-template-rows: 1fr;
+}
+details.section > .content > .inner {
+	overflow: hidden;
+}

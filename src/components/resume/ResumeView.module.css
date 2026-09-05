@@ -1,0 +1,25 @@
+.page {
+  width: var(--doc-page-width);
+  min-height: var(--doc-page-height);
+  line-height: var(--doc-leading-body);
+  color: var(--doc-ink-body);
+}
+
+.cvEntry {
+  break-inside: avoid;
+}
+
+.pageGuides {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(var(--doc-page-height) - 1px),
+    var(--doc-guide) calc(var(--doc-page-height) - 1px)
+      var(--doc-page-height)
+  );
+}
+
+@media print {
+  .pageGuides {
+    display: none;
+  }
+}
