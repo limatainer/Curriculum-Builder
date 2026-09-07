@@ -11,16 +11,21 @@ export function ResumeBody({ data, hex }: { data: ResumeData; hex: string }) {
     <motion.div
       {...colAnim}
       transition={{ ...colAnim.transition, delay: 0.13 }}
-      className="flex flex-col flex-1"
-      style={{
-        gap: "var(--doc-space-220)",
-        padding: "var(--doc-space-200) var(--doc-space-220)",
-      }}
+      className={cn(styles.stack, "flex-1 min-w-0")}
+      style={
+        {
+          "--stack-gap": "var(--doc-space-220)",
+          padding: "var(--doc-space-200) var(--doc-space-220)",
+        } as React.CSSProperties
+      }
     >
       {data.experiences.length > 0 && (
         <section>
           <SectionHeader color={hex} title="EXPERIÊNCIA" />
-          <div className="flex flex-col" style={{ gap: "var(--doc-space-160)" }}>
+          <div
+            className={styles.stack}
+            style={{ "--stack-gap": "var(--doc-space-160)" } as React.CSSProperties}
+          >
             {data.experiences.map((exp) => (
               <ExperienceEntry key={exp.id} exp={exp} hex={hex} />
             ))}
@@ -29,7 +34,7 @@ export function ResumeBody({ data, hex }: { data: ResumeData; hex: string }) {
       )}
 
       {data.references.length > 0 && (
-        <section>
+        <section className={styles.avoidBreak}>
           <SectionHeader color={hex} title="REFERÊNCIAS" />
           <div
             style={{

@@ -5,8 +5,20 @@
   color: var(--doc-ink-body);
 }
 
+.stack > * + * {
+  margin-top: var(--stack-gap, 0);
+}
+
 .cvEntry {
   break-inside: avoid;
+}
+
+.avoidBreak {
+  break-inside: avoid-page;
+}
+
+.sectionHeader {
+  break-after: avoid;
 }
 
 .pageGuides {

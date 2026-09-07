@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 import type { ResumeData } from "@/types";
 import styles from "./ResumeView.module.css";
 import { SectionHeader } from "./SectionHeader";
@@ -18,25 +19,30 @@ export function ResumeSidebar({
     <motion.aside
       {...colAnim}
       transition={{ ...colAnim.transition, delay: 0.05 }}
-      className="flex flex-col"
-      style={{
-        width: stacked ? "100%" : "var(--doc-sidebar-width)",
-        flexShrink: 0,
-        gap: "var(--doc-space-200)",
-        padding: "var(--doc-space-200)",
-        backgroundColor: "var(--doc-surface)",
-        [stacked ? "borderBottom" : "borderRight"]: `var(--doc-hairline) solid var(--doc-rule)`,
-      }}
+      className={styles.stack}
+      style={
+        {
+          width: stacked ? "100%" : "var(--doc-sidebar-width)",
+          flexShrink: 0,
+          "--stack-gap": "var(--doc-space-200)",
+          padding: "var(--doc-space-200)",
+          backgroundColor: "var(--doc-surface)",
+          [stacked ? "borderBottom" : "borderRight"]: `var(--doc-hairline) solid var(--doc-rule)`,
+        } as React.CSSProperties
+      }
     >
-      <section>
+      <section className={styles.avoidBreak}>
         <SectionHeader color={hex} title="SOBRE MIM" />
         <p style={{ lineHeight: "var(--doc-leading-relaxed)" }}>{data.about}</p>
       </section>
 
       {data.education.length > 0 && (
-        <section>
+        <section className={styles.avoidBreak}>
           <SectionHeader color={hex} title="FORMAÇÃO" />
-          <div className="flex flex-col" style={{ gap: "var(--doc-space-100)" }}>
+          <div
+            className={styles.stack}
+            style={{ "--stack-gap": "var(--doc-space-100)" } as React.CSSProperties}
+          >
             {data.education.map((e) => (
               <div key={e.id} className={styles.cvEntry}>
                 <div className="font-bold" style={{ color: INK }}>
@@ -51,9 +57,12 @@ export function ResumeSidebar({
       )}
 
       {data.skills.length > 0 && (
-        <section>
+        <section className={styles.avoidBreak}>
           <SectionHeader color={hex} title="HABILIDADES" />
-          <div className="flex flex-col" style={{ gap: "var(--doc-space-85)" }}>
+          <div
+            className={styles.stack}
+            style={{ "--stack-gap": "var(--doc-space-85)" } as React.CSSProperties}
+          >
             {data.skills.map((s) => (
               <div key={s.id} className={styles.cvEntry}>
                 <div style={{ fontSize: T.small }}>{s.name}</div>
@@ -65,11 +74,18 @@ export function ResumeSidebar({
       )}
 
       {data.languages.length > 0 && (
-        <section>
+        <section className={styles.avoidBreak}>
           <SectionHeader color={hex} title="IDIOMAS" />
-          <div className="flex flex-col" style={{ gap: "var(--doc-space-50)" }}>
+          <div
+            className={styles.stack}
+            style={{ "--stack-gap": "var(--doc-space-50)" } as React.CSSProperties}
+          >
             {data.languages.map((l) => (
-              <div key={l.id} className="flex items-center" style={{ gap: "var(--doc-space-60)" }}>
+              <div
+                key={l.id}
+                className={cn(styles.cvEntry, "flex items-center")}
+                style={{ gap: "var(--doc-space-60)" }}
+              >
                 <span
                   className="rounded-full flex-shrink-0"
                   style={{
