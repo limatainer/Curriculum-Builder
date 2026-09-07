@@ -1,4 +1,5 @@
 import { withAlpha } from "@/helpers/color";
+import styles from "./ResumeView.module.css";
 
 interface SectionHeaderProps {
   color: string;
@@ -8,7 +9,7 @@ interface SectionHeaderProps {
 export function SectionHeader({ color, title }: SectionHeaderProps) {
   return (
     <div
-      className="flex items-center"
+      className={`${styles.sectionHeader} flex items-center`}
       style={{
         gap: "var(--doc-space-70)",
         marginBottom: "var(--doc-space-100)",
