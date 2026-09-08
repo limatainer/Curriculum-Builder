@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { LuUpload, LuUser } from "react-icons/lu";
+import { downscaleToDataUrl } from "@/helpers/image";
 import { ICON_SIZE } from "@/lib/tokens";
 import type { ResumeData } from "@/types";
 import { Field } from "../Field";
@@ -9,12 +10,14 @@ import type { SetField } from "../types";
 export function PersonalSection({ data, set }: { data: ResumeData; set: SetField }) {
   const photoRef = useRef<HTMLInputElement>(null);
 
-  const handlePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => set("photo")(ev.target?.result as string);
-    reader.readAsDataURL(file);
+    try {
+      set("photo")(await downscaleToDataUrl(file));
+    } catch {
+      set("photo")(null);
+    }
   };
 
   return (

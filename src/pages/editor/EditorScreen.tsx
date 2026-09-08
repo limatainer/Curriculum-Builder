@@ -1,11 +1,12 @@
+import { useAtom, useAtomValue } from "jotai";
+import { RESET } from "jotai/utils";
 import { useState } from "react";
-import { LuDownload, LuPanelLeft, LuX } from "react-icons/lu";
+import { LuDownload, LuPanelLeft, LuRotateCcw, LuX } from "react-icons/lu";
 import { ResumeView } from "@/components/ResumeView";
 import { Button } from "@/components/ui/button";
-import { DEFAULT } from "@/constants";
 import { ICON_SIZE } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
-import type { ResumeData } from "@/types";
+import { resumeAtom, saveErrorAtom } from "@/store/resume";
 import { EditorHeader } from "./EditorHeader";
 import { EditorPanel } from "./EditorPanel";
 import { resumeFileName } from "./fileName";
@@ -26,9 +27,15 @@ const fitScale = () => {
 };
 
 export function EditorScreen() {
-  const [data, setData] = useState<ResumeData>(DEFAULT);
+  const [data, setData] = useAtom(resumeAtom);
+  const saveError = useAtomValue(saveErrorAtom);
   const [scale, setScale] = useState(fitScale);
   const [panelOpen, setPanelOpen] = useState(false);
+
+  const handleReset = () => {
+    if (!window.confirm("Apagar todas as alterações e voltar ao modelo inicial?")) return;
+    setData(RESET);
+  };
 
   const handlePrint = () => {
     const previous = document.title;
@@ -135,6 +142,16 @@ export function EditorScreen() {
 
               <Button
                 type="button"
+                variant="icon"
+                size="iconSm"
+                onClick={handleReset}
+                aria-label="Limpar alterações"
+              >
+                <LuRotateCcw size={ICON_SIZE.control} aria-hidden="true" />
+              </Button>
+
+              <Button
+                type="button"
                 onClick={handlePrint}
                 aria-label="Baixar PDF"
                 className="gap-2 px-3 sm:px-4"
@@ -144,6 +161,15 @@ export function EditorScreen() {
               </Button>
             </div>
           </div>
+
+          {saveError && (
+            <p
+              role="alert"
+              className="flex-shrink-0 border-b border-rule bg-paper px-3 py-2 font-mono text-eyebrow-tight text-signal-deep md:px-6"
+            >
+              {saveError}
+            </p>
+          )}
 
           <div className="flex-1 overflow-auto [scrollbar-color:color-mix(in_oklab,var(--ink)_20%,transparent)_transparent] [scrollbar-width:thin]">
             <div
