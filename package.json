@@ -11,7 +11,8 @@
     "lint": "biome lint --write .",
     "typecheck": "tsc --noEmit",
     "check": "biome check --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "node --test src/**/*.test.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -23,6 +24,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jotai": "^2.20.3",
     "motion": "^13.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -31,7 +33,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.6",
-    "@biomejs/cli-darwin-arm64": "2.2.6",
     "@tailwindcss/vite": "4.1.12",
     "@tanstack/router-plugin": "1.168.32",
     "@types/react": "^18.3.31",
